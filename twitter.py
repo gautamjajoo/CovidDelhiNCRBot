@@ -27,7 +27,7 @@ def store_last_seen_id(last_seen_id,file_name):
 FILE_NAME = 'last_fav_tweet_id.txt'
 
 def fav_tweet():
-    # print('Tweetssss......')
+    print('Tweetssss......')
     last_seen_id = retrieve_last_seen_id(FILE_NAME)
     mentions = api.mentions_timeline(last_seen_id, tweet_mode = "extended")
     for mention in reversed(mentions):
@@ -37,13 +37,17 @@ def fav_tweet():
         last_fav_tweet = mention.id
         store_last_seen_id(last_fav_tweet,FILE_NAME)
         print('like and retweet', flush=True)
-        if(mention.in_reply_to_status_id == None):
-            api.create_favorite(mention.id)
-            api.retweet(mention.id)
-        else:
-            api.create_favorite(mention.in_reply_to_status_id)
-            api.retweet(mention.in_reply_to_status_id)
-            api.create_favorite(mention.id)
+        try:
+          if(mention.in_reply_to_status_id == None):
+                api.create_favorite(mention.id)
+                api.retweet(mention.id)
+              
+          else:
+              api.create_favorite(mention.in_reply_to_status_id)
+              api.retweet(mention.in_reply_to_status_id)
+              api.create_favorite(mention.id)
+        except:
+          continue
 
 while True:
     fav_tweet()
