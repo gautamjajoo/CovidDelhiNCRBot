@@ -6,7 +6,7 @@ from os import environ
 API_KEY = environ['API_KEY']
 API_SECRET = environ['API_SECRET']
 ACCESS_TOKEN = environ['ACCESS_TOKEN']
-ACCESS_SECRET = environ['ACCESS_SECRECT']
+ACCESS_SECRET = environ['ACCESS_SECRET']
 
 auth = tweepy.OAuthHandler(API_KEY, API_SECRET)
 auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
