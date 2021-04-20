@@ -27,7 +27,7 @@ def store_last_seen_id(last_seen_id,file_name):
 FILE_NAME = 'last_fav_tweet_id.txt'
 
 def fav_tweet():
-    print('Tweetssss......')
+    # print('Tweetssss......')
     last_seen_id = retrieve_last_seen_id(FILE_NAME)
     mentions = api.mentions_timeline(last_seen_id, tweet_mode = "extended")
     for mention in reversed(mentions):
